@@ -17,10 +17,10 @@ let package = Package(
         .binaryTarget(
             name: "Mapbox",
             url: "https://github.com/maptiler/maptiler-gl-mobile/releases/download/ios-v5.9.0/Mapbox-5.9.0.zip",
-            checksum: "0d823d29b3ec734796951f906884536adb8760b0f06a77fc8bae86e56232d283"),
+            checksum: "c327b99e38d50ec1bdb1de032bcd9602cb4110ad36086b0684f021ce1f5b552d"),
         .binaryTarget(
             name: "MapboxMobileEvents",
             url: "https://github.com/maptiler/maptiler-gl-mobile/releases/download/ios-v5.9.0/MapboxMobileEvents-5.9.0.zip",
-            checksum: "7b71798d4dfd326536fde5003857f5364173d8ab8b233e4f012a51100d22d5db")            
+            checksum: "12c841742b6e3a0deab6078f15915a8d33cc08cb47d032c1e8bea1664d170e93")            
     ]
 )
