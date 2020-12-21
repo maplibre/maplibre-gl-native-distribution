@@ -2,7 +2,7 @@
 import PackageDescription
 
 let package = Package(
-    name: "maptiler-gl-mobile",
+    name: "maplibre-gl-native",
     products: [
         .library(
             name: "Mapbox",
@@ -16,11 +16,11 @@ let package = Package(
     targets: [
         .binaryTarget(
             name: "Mapbox",
-            url: "https://github.com/maptiler/maptiler-gl-mobile/releases/download/ios-v5.9.0/Mapbox-5.9.0.zip",
-            checksum: "c327b99e38d50ec1bdb1de032bcd9602cb4110ad36086b0684f021ce1f5b552d"),
+            url: "https://github.com/maptiler/maplibre-gl-native/releases/download/ios-v5.9.0/Mapbox-5.9.0.zip",
+            checksum: "6257635af06d78e674a599d45bbb8d97e9ae6a3b95e6175130116b06b4a9a027"),
         .binaryTarget(
             name: "MapboxMobileEvents",
-            url: "https://github.com/maptiler/maptiler-gl-mobile/releases/download/ios-v5.9.0/MapboxMobileEvents-5.9.0.zip",
-            checksum: "12c841742b6e3a0deab6078f15915a8d33cc08cb47d032c1e8bea1664d170e93")            
+            url: "https://github.com/maptiler/maplibre-gl-native/releases/download/ios-v5.9.0/MapboxMobileEvents-5.9.0.zip",
+            checksum: "ab1a84fc78c0637ab462365e79f959ec7ea6464f70493381a7b0e4fe73e19298")            
     ]
 )
