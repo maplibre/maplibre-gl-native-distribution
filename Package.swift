@@ -6,21 +6,14 @@ let package = Package(
     products: [
         .library(
             name: "Mapbox",
-            targets: ["Mapbox"]),
-        .library(
-            name: "MapboxMobileEvents",
-            targets: ["MapboxMobileEvents"])            
+            targets: ["Mapbox"])
     ],
     dependencies: [
     ],    
     targets: [
         .binaryTarget(
             name: "Mapbox",
-            url: "https://github.com/maptiler/maplibre-gl-native/releases/download/ios-v5.10.0/Mapbox-5.10.0.zip",
-            checksum: "edcca3b7b84ca50eeabe28e1a2d9ba3e34cee2ca7e8daa8ad9e67393457ed9f3"),
-        .binaryTarget(
-            name: "MapboxMobileEvents",
-            url: "https://github.com/maptiler/maplibre-gl-native/releases/download/ios-v5.10.0/MapboxMobileEvents-5.10.0.zip",
-            checksum: "78298810dc3c3370ad2cf8265b1e6ef3fc406565c447a5275d689a5f06cedfd9")            
+            url: "https://github.com/maplibre/maplibre-gl-native/releases/download/ios-v5.11.0/Mapbox-5.11.0.zip",
+            checksum: "3446a5ed2f8cc144ec9a6e474d59d4f803e227bac78201f0f6494d7f7251cb77")
     ]
 )
