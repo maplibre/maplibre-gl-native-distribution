@@ -27,3 +27,11 @@ You can add this to `Package.swift`
 Other References from developer.apple.com
 
 * Find out if a package dependency references a binary and verify the binary’s authenticity.  See [Identifying Binary Dependencies.](https://developer.apple.com/documentation/swift_packages/identifying_binary_dependencies)
+
+## Test MapLibre with a Swift Playgrounds
+
+When you download this repo there is a Swift Playground that allows you to change the style and play around with a very simple rendered map.  
+
+* Download this repo
+* Navigate to the folder where you `clone`d, and open `Package.swift` in at least Xcode 12.
+* Run Playground by choosing `Editor` > `Run Playground` or `⇧⌘⏎`
