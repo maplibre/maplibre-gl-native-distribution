@@ -20,10 +20,18 @@ mapView.frame = CGRect(x: 0, y: 0, width: width, height: height)
 mapView.logoView.isHidden = true
 mapView.attributionButton.isHidden = true
 
-PlaygroundPage.current.liveView = mapView
+// enable debugging tile features
+mapView.debugMask = MGLMapDebugMaskOptions(rawValue:
+                                            // Edges of tile boundaries
+                                            MGLMapDebugMaskOptions.tileBoundariesMask.rawValue +
+                                            // tile coordinate (x/y/z)
+                                            MGLMapDebugMaskOptions.tileInfoMask.rawValue
+                                          )
 
 // Set Style
 let styleJSON = "https://raw.githubusercontent.com/roblabs/openmaptiles-ios-demo/master/OSM2VectorTiles/styles/geography-class.GitHub.json"
 
 mapView.styleURL = URL(string: styleJSON)
 mapView.setCenter(CLLocationCoordinate2D(latitude: 0.0, longitude: 0.0), zoomLevel: 2, animated: false)
+
+PlaygroundPage.current.liveView = mapView
