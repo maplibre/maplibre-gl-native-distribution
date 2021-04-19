@@ -16,14 +16,31 @@ To add a package dependency to your Xcode project, select File > Swift Packages 
 
 You can override the MapLibre package dependency and edit its content by adding it as a local package.  See [Editing a Package Dependency as a Local Package](https://developer.apple.com/documentation/swift_packages/editing_a_package_dependency_as_a_local_package).
 
-You can add this to `Package.swift`
+For example, you can add this to `Package.swift`, if you are interested in testing the Mapbox framework with another framework.
 
 ```swift
-.binaryTarget(
-  name: "Mapbox",
-  path: "build/output/Mapbox.xcframework"),
+products: [
+    .library( name: "Mapbox", targets: ["Mapbox"]),
+    .library( name: "MetalANGLE", targets: ["MetalANGLE"])
+],
+dependencies: [ ],
+// target path should be relative to package root
+targets: [
+    .binaryTarget(name: "Mapbox", path: "Mapbox.xcframework"),
+    .binaryTarget(name: "MetalANGLE", path: "MetalANGLE.xcframework")
+]
 ```
 
 Other References from developer.apple.com
 
 * Find out if a package dependency references a binary and verify the binary’s authenticity.  See [Identifying Binary Dependencies.](https://developer.apple.com/documentation/swift_packages/identifying_binary_dependencies)
+
+* WWDC20 [Distribute binary frameworks as Swift packages](https://developer.apple.com/wwdc20/10147), which describes several features of a binary targets.
+
+## Test MapLibre with a Swift Playgrounds
+
+When you download this repo there is a Swift Playground that allows you to change the style and play around with a very simple rendered map.  
+
+* Download this repo
+* Navigate to the folder where you `clone`d, and open `Package.swift` in at least Xcode 12.
+* Run Playground by choosing `Editor` > `Run Playground` or `⇧⌘⏎`
