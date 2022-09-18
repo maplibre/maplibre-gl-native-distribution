@@ -43,4 +43,5 @@ When you download this repo there is a Swift Playground that allows you to chang
 
 * Download this repo
 * Navigate to the folder where you `clone`d, and open `Package.swift` in at least Xcode 12.
-* Run Playground by choosing `Editor` > `Run Playground` or `⇧⌘⏎`
+* Run Playground by choosing `Editor` > `Run Playground` or `⇧-⌘-⏎`
+* See issue [maplibre-gl-native-distribution#8](https://github.com/maplibre/maplibre-gl-native-distribution/issues/8) for screenshots of the MapLibre for Swift Playgrounds in action.
