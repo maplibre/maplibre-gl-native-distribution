@@ -31,11 +31,14 @@ targets: [
 ]
 ```
 
-Other References from developer.apple.com
+Other Swift Packages documentation from developer.apple.com
 
+* [Swift packages](https://developer.apple.com/documentation/xcode/swift-packages) "*bundle source files, binaries, and resources in a way that’s easy to use in your app’s project.*"
+* [Distributing binary frameworks as Swift packages](https://developer.apple.com/documentation/xcode/distributing-binary-frameworks-as-swift-packages) to "*make binaries available to other developers by creating Swift packages that include one or more XCFrameworks.*"
 * Find out if a package dependency references a binary and verify the binary’s authenticity.  See [Identifying Binary Dependencies.](https://developer.apple.com/documentation/swift_packages/identifying_binary_dependencies)
-
 * WWDC20 [Distribute binary frameworks as Swift packages](https://developer.apple.com/wwdc20/10147), which describes several features of a binary targets.
+
+---
 
 ## Test MapLibre with a Swift Playgrounds
 
