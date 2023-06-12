@@ -5,7 +5,7 @@
 [![SPM compatible](https://img.shields.io/badge/Swift%20Package%20Manager-compatible-FA7343.svg?style=flat&logo=Swift)](https://swiftpackageindex.com/maplibre/maplibre-gl-native-distribution)
 
 > **Note**  
-> This repository only exists for the purpose of binary distribution of MapLibre Native on Swift Package Manager.
+> This repository only exists for the purpose of binary distribution of MapLibre Native for iOS on the Swift Package Index.
 > Please use the [main MapLibre Native repository](https://github.com/maplibre/maplibre-native) to report issues or ask for help.
 
 [MapLibre Native](https://github.com/maplibre/maplibre-native) is a community-led fork derived from [mapbox-gl-native](https://github.com/mapbox/mapbox-gl-native) before their switch to a non-OSS license. The fork also includes Maps SDK for iOS and macOS (forked from [mapbox-gl-native-ios](https://github.com/mapbox/mapbox-gl-native-ios)) and Android SDK (forked from [mapbox-gl-native-android](https://github.com/mapbox/mapbox-gl-native-android)).
