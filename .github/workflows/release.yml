@@ -41,6 +41,8 @@ jobs:
       - name: Push Package.swift
         run: |
           git add Package.swift
+          git config --global user.email "git@maplibre.org"
+          git config --global user.name "GitHub Actions"
           git commit -m "Release ${{ github.event.inputs.version }}"
           git tag -a ${{ github.event.inputs.version }} -m "Release ${{ github.event.inputs.version }}"
           git push origin ${{ github.event.inputs.version }}
