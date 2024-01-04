@@ -45,7 +45,7 @@ jobs:
           git config --global user.name "GitHub Actions"
           git commit -m "Release ${{ github.event.inputs.version }}"
           git tag -a ${{ github.event.inputs.version }} -m "Release ${{ github.event.inputs.version }}"
-          git push origin ${{ github.event.inputs.version }}
+          git push --atomic origin main ${{ github.event.inputs.version }}
 
       - name: Make release
         uses: softprops/action-gh-release@v1
