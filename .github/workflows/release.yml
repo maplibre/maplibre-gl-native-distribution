@@ -1,0 +1,54 @@
+name: release
+
+on:
+  workflow_dispatch:
+    inputs:
+      download_url:
+        description: URL where zip containing XCFramework can be downloaded
+        required: true
+        type: string
+      version:
+        description: Version number of release
+        required: true
+        type: string
+      changelog:
+        description: Changelog for release
+        required: false
+        type: string
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Download zip, compute checksum
+        run: |
+          wget ${{ github.event.inputs.download_url }}
+          echo checksum="$(swift package compute-checksum MapLibre.dynamic.xcframework.zip)" >> "$GITHUB_ENV"
+    
+      - name: Insert new checksum in Package.swift
+        run: |
+          sed -i '' 's#\(checksum: "\)\([^"]*\)#\1${{ env.checksum }}#' Package.swift
+
+      - name: Insert download URL in Package.swift
+        run: |
+          sed -i '' 's#\(url: "\)\([^"]*\)#\1${{ github.event.inputs.download_url }}#' Package.swift
+
+      - name: Validate Package.swift
+        run: swift package describe
+
+      - name: Push Package.swift
+        run: |
+          git add Package.swift
+          git commit -m "Release ${{ github.event.inputs.version }}"
+          git tag -a ${{ github.event.inputs.version }} -m "Release ${{ github.event.inputs.version }}"
+          git push origin ${{ github.event.inputs.version }}
+
+      - name: Make release
+        uses: softprops/action-gh-release@v1
+        with:
+          name: ${{ github.event.inputs.version }}
+          tag_name: ${{ github.event.inputs.version }}
+          prerelease: ${{ contains(github.event.inputs.version, 'pre') }}
+          body_path: ${{ github.event.inputs.changelog }}
