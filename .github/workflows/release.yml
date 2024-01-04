@@ -29,11 +29,11 @@ jobs:
     
       - name: Insert new checksum in Package.swift
         run: |
-          sed -i '' 's#\(checksum: "\)\([^"]*\)#\1${{ env.checksum }}#' Package.swift
+          sed -i 's#\(checksum: "\)\([^"]*\)#\1${{ env.checksum }}#' Package.swift
 
       - name: Insert download URL in Package.swift
         run: |
-          sed -i '' 's#\(url: "\)\([^"]*\)#\1${{ github.event.inputs.download_url }}#' Package.swift
+          sed -i 's#\(url: "\)\([^"]*\)#\1${{ github.event.inputs.download_url }}#' Package.swift
 
       - name: Validate Package.swift
         run: swift package describe
