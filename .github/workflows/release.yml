@@ -11,8 +11,8 @@ on:
         description: Version number of release
         required: true
         type: string
-      changelog:
-        description: Changelog for release
+      changelog_url:
+        description: URL for changelog of release
         required: false
         type: string
 
@@ -47,10 +47,18 @@ jobs:
           git tag -a ${{ github.event.inputs.version }} -m "Release ${{ github.event.inputs.version }}"
           git push --atomic origin main ${{ github.event.inputs.version }}
 
+      - name: Download changelog.md
+        if: github.event.inputs.changelog_url != ''
+        run: wget -O changelog.md ${{ github.event.inputs.changelog_url }}
+
+      - name: Create empty changelog.md
+        if: github.event.inputs.changelog_url == ''
+        run: touch changelog.md
+
       - name: Make release
         uses: softprops/action-gh-release@v1
         with:
           name: ${{ github.event.inputs.version }}
           tag_name: ${{ github.event.inputs.version }}
           prerelease: ${{ contains(github.event.inputs.version, 'pre') }}
-          body_path: ${{ github.event.inputs.changelog }}
+          body_path: changelog.md
