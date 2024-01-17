@@ -17,6 +17,9 @@ let height: CGFloat = 480
 let mapView = MLNMapView(frame: CGRect(x: 0, y: 0, width: width, height: height))
 mapView.frame = CGRect(x: 0, y: 0, width: width, height: height)
 
+// shows the result of running the code this far
+PlaygroundPage.current.liveView = mapView
+
 // Hide logo & attribution button
 mapView.logoView.isHidden = true
 mapView.attributionButton.isHidden = true
@@ -43,12 +46,12 @@ let options = MLNMapSnapshotOptions(styleURL: URL(string: styleJSON), camera: ca
 options.zoomLevel = mapView.zoomLevel
 
 let snapshotter = MLNMapSnapshotter(options: options)
-snapshotter.start { (snapshot, error) in
-    if let error = error {
-        fatalError(error.localizedDescription)
-    }
-    
-    image = snapshot?.image
-}
+// Awaiting https://github.com/maplibre/maplibre-native/issues/1979
+//snapshotter.start { (snapshot, error) in
+//    if let error = error {
+//        fatalError(error.localizedDescription)
+//    }
+//    
+//    image = snapshot?.image
+//}
 
-PlaygroundPage.current.liveView = mapView
