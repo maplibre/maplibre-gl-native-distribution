@@ -13,7 +13,7 @@ let package = Package(
     targets: [
         .binaryTarget(
             name: "MapLibre",
-            url: "https://github.com/maplibre/maplibre-native/releases/download/ios-vios-v6.4.3.pre1/MapLibre.dynamic.xcframework.zip",
-            checksum: "9493bec9e82ea40ab84949199aaf7279e5072a5a975fe77f2ea817ce178605c6")
+            url: "https://github.com/maplibre/maplibre-native/releases/download/ios-v6.4.3-pre.1/MapLibre.dynamic.xcframework.zip",
+            checksum: "dd075bf4e262a668f8ad500e44e523ba34d3c0ff16215c442f98b92d78dc869a")
     ]
 )
