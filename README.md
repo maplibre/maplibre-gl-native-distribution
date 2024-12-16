@@ -52,3 +52,34 @@ When you download this repo there is a Swift Playground that allows you to chang
 * Navigate to the folder where you `clone`d, and open `Package.swift` in at least Xcode 12.
 * Run Playground by choosing `Editor` > `Run Playground` or `⇧-⌘-⏎`
 * See issue [maplibre-gl-native-distribution#8](https://github.com/maplibre/maplibre-gl-native-distribution/issues/8) for screenshots of the MapLibre for Swift Playgrounds in action.
+
+## Local Development Guide
+
+### Building and Using Local Framework
+
+1. Clone the maplibre-native repository:
+```bash
+git clone https://github.com/maplibre/maplibre-native.git
+```
+
+2. Build the framework using our build script:
+```bash
+MAPLIBRE_DIR="/path/to/maplibre-native" ./scripts/build_maplibre.sh
+```
+
+This script will:
+- Build the framework using Bazel
+- Move the built framework to this repository
+- Configure your environment to use the local framework
+
+### Switching Between Local and Remote Framework
+
+- To use local framework: `export USE_MAPLIBRE_LOCAL_FRAMEWORK=1`
+- To use remote framework: `unset USE_MAPLIBRE_LOCAL_FRAMEWORK`
+
+### Troubleshooting
+
+If you encounter issues:
+1. Ensure your Bazel build succeeds in maplibre-native
+2. Check that the framework was copied to the correct location
+3. Verify your environment variable is set correctly with `echo $USE_MAPLIBRE_LOCAL_FRAMEWORK`
