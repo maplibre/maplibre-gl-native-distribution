@@ -16,34 +16,6 @@
 
 To add a package dependency to your Xcode project, select File > Swift Packages > Add Package Dependency and enter its repository URL. See [Adding Package Dependencies to Your App.](https://developer.apple.com/documentation/xcode/adding_package_dependencies_to_your_app)
 
-## Swift Packages Development
-
-You can override the MapLibre package dependency and edit its content by adding it as a local package.  See [Editing a Package Dependency as a Local Package](https://developer.apple.com/documentation/swift_packages/editing_a_package_dependency_as_a_local_package).
-
-For example, you can add this to `Package.swift`, if you are interested in testing the Mapbox framework with another framework.
-
-```swift
-products: [
-    .library( name: "Mapbox", targets: ["Mapbox"]),
-    .library( name: "MetalANGLE", targets: ["MetalANGLE"])
-],
-dependencies: [ ],
-// target path should be relative to package root
-targets: [
-    .binaryTarget(name: "Mapbox", path: "Mapbox.xcframework"),
-    .binaryTarget(name: "MetalANGLE", path: "MetalANGLE.xcframework")
-]
-```
-
-Other Swift Packages documentation from developer.apple.com
-
-* [Swift packages](https://developer.apple.com/documentation/xcode/swift-packages) "*bundle source files, binaries, and resources in a way that’s easy to use in your app’s project.*"
-* [Distributing binary frameworks as Swift packages](https://developer.apple.com/documentation/xcode/distributing-binary-frameworks-as-swift-packages) to "*make binaries available to other developers by creating Swift packages that include one or more XCFrameworks.*"
-* Find out if a package dependency references a binary and verify the binary’s authenticity.  See [Identifying Binary Dependencies.](https://developer.apple.com/documentation/swift_packages/identifying_binary_dependencies)
-* WWDC20 [Distribute binary frameworks as Swift packages](https://developer.apple.com/wwdc20/10147), which describes several features of a binary targets.
-
----
-
 ## Test MapLibre with a Swift Playgrounds
 
 When you download this repo there is a Swift Playground that allows you to change the style and play around with a very simple rendered map.  
