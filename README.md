@@ -16,6 +16,16 @@
 
 To add a package dependency to your Xcode project, select File > Swift Packages > Add Package Dependency and enter its repository URL. See [Adding Package Dependencies to Your App.](https://developer.apple.com/documentation/xcode/adding_package_dependencies_to_your_app)
 
+Starting with `7.0.0-pre0`, choose one of these products:
+
+| Product | Swift import | Description |
+| --- | --- | --- |
+| `MapLibre` | `import MapLibre` | MapLibre iOS |
+| `MapLibreWithPlugins` | `import MapLibreWithPlugins` | MapLibre iOS with the plugin API enabled (`MLN_WITH_PLUGINS`) |
+
+The plugin product includes the C API in `plugin_api.h`. Use only one product in an app, as both frameworks define the same Objective-C classes.
+
+
 ## Test MapLibre with a Swift Playgrounds
 
 When you download this repo there is a Swift Playground that allows you to change the style and play around with a very simple rendered map.  

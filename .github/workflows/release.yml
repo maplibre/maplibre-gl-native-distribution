@@ -7,6 +7,10 @@ on:
         description: URL where zip containing XCFramework can be downloaded
         required: true
         type: string
+      plugins_download_url:
+        description: URL where the plugin-enabled XCFramework zip can be downloaded
+        required: true
+        type: string
       version:
         description: Version number of release
         required: true
@@ -19,33 +23,58 @@ on:
 jobs:
   release:
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
     steps:
       - uses: actions/checkout@v4
 
       - name: Download zip, compute checksum
+        env:
+          DOWNLOAD_URL: ${{ inputs.download_url }}
+          PLUGINS_DOWNLOAD_URL: ${{ inputs.plugins_download_url }}
         run: |
-          wget ${{ github.event.inputs.download_url }}
-          echo checksum="$(swift package compute-checksum MapLibre.dynamic.xcframework.zip)" >> "$GITHUB_ENV"
-    
-      - name: Insert new checksum in Package.swift
-        run: |
-          sed -i 's#\(checksum: "\)\([^"]*\)#\1${{ env.checksum }}#' Package.swift
+          wget -O MapLibre.dynamic.xcframework.zip "$DOWNLOAD_URL"
+          wget -O MapLibre.dynamic.plugins.xcframework.zip "$PLUGINS_DOWNLOAD_URL"
+          echo "checksum=$(swift package compute-checksum MapLibre.dynamic.xcframework.zip)" >> "$GITHUB_ENV"
+          echo "plugins_checksum=$(swift package compute-checksum MapLibre.dynamic.plugins.xcframework.zip)" >> "$GITHUB_ENV"
 
-      - name: Insert download URL in Package.swift
+      - name: Update Package.swift
+        env:
+          DOWNLOAD_URL: ${{ inputs.download_url }}
+          PLUGINS_DOWNLOAD_URL: ${{ inputs.plugins_download_url }}
+          CHECKSUM: ${{ env.checksum }}
+          PLUGINS_CHECKSUM: ${{ env.plugins_checksum }}
         run: |
-          sed -i 's#\(url: "\)\([^"]*\)#\1${{ github.event.inputs.download_url }}#' Package.swift
+          python3 - <<'PY'
+          import json
+          import os
+          from pathlib import Path
+
+          manifest = Path('.github/Package.swift.template').read_text()
+          for placeholder, variable in {
+              'MAPLIBRE_DOWNLOAD_URL': 'DOWNLOAD_URL',
+              'MAPLIBRE_PLUGINS_DOWNLOAD_URL': 'PLUGINS_DOWNLOAD_URL',
+              'MAPLIBRE_CHECKSUM': 'CHECKSUM',
+              'MAPLIBRE_PLUGINS_CHECKSUM': 'PLUGINS_CHECKSUM',
+          }.items():
+              manifest = manifest.replace('"' + placeholder + '"', json.dumps(os.environ[variable]))
+          Path('Package.swift').write_text(manifest)
+          PY
 
       - name: Validate Package.swift
         run: swift package describe
 
       - name: Push Package.swift
+        env:
+          VERSION: ${{ inputs.version }}
+          RELEASE_BRANCH: ${{ github.ref_name }}
         run: |
           git add Package.swift
           git config --global user.email "git@maplibre.org"
           git config --global user.name "GitHub Actions"
-          git commit -m "Release ${{ github.event.inputs.version }}"
-          git tag -a ${{ github.event.inputs.version }} -m "Release ${{ github.event.inputs.version }}"
-          git push --atomic origin main ${{ github.event.inputs.version }}
+          git commit -m "Release $VERSION"
+          git tag -a "$VERSION" -m "Release $VERSION"
+          git push --atomic origin "$RELEASE_BRANCH" "$VERSION"
 
       - name: Download changelog.md
         if: github.event.inputs.changelog_url != ''

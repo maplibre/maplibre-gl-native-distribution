@@ -1,0 +1,20 @@
+// swift-tools-version:5.3
+import PackageDescription
+
+let package = Package(
+    name: "MapLibre Native",
+    products: [
+        .library(name: "MapLibre", targets: ["MapLibre"]),
+        .library(name: "MapLibreWithPlugins", targets: ["MapLibreWithPlugins"])
+    ],
+    targets: [
+        .binaryTarget(
+            name: "MapLibre",
+            url: "MAPLIBRE_DOWNLOAD_URL",
+            checksum: "MAPLIBRE_CHECKSUM"),
+        .binaryTarget(
+            name: "MapLibreWithPlugins",
+            url: "MAPLIBRE_PLUGINS_DOWNLOAD_URL",
+            checksum: "MAPLIBRE_PLUGINS_CHECKSUM")
+    ]
+)
