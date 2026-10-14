@@ -12,6 +12,15 @@
 
 ---
 
+## MapLibre iOS distributions
+
+MapLibre iOS is distributed as two Swift packages, both built from the same [MapLibre Native](https://github.com/maplibre/maplibre-native) releases. Use one of them per application.
+
+| Distribution | Swift package | Releases |
+| --- | --- | --- |
+| MapLibre iOS | [maplibre/maplibre-gl-native-distribution](https://github.com/maplibre/maplibre-gl-native-distribution) | [Releases](https://github.com/maplibre/maplibre-gl-native-distribution/releases) |
+| MapLibre iOS with the experimental C plugin API | [maplibre/maplibre-ios-with-plugin-api](https://github.com/maplibre/maplibre-ios-with-plugin-api) | [Releases](https://github.com/maplibre/maplibre-ios-with-plugin-api/releases) |
+
 ## Add MapLibre to your Project
 
 To add a package dependency to your Xcode project, select File > Swift Packages > Add Package Dependency and enter its repository URL. See [Adding Package Dependencies to Your App.](https://developer.apple.com/documentation/xcode/adding_package_dependencies_to_your_app)
