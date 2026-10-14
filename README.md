@@ -4,7 +4,7 @@
 [![Requires Swift 5.3](https://img.shields.io/badge/Swift-5.3-FA7343.svg?style=flat&logo=Swift)](https://swift.org/package-manager/)
 [![SPM compatible](https://img.shields.io/badge/Swift%20Package%20Manager-compatible-FA7343.svg?style=flat&logo=Swift)](https://swiftpackageindex.com/maplibre/maplibre-gl-native-distribution)
 
-> **Note**  
+> [!NOTE]
 > This repository only exists for the purpose of binary distribution of MapLibre Native for iOS on the Swift Package Index.
 > Please use the [main MapLibre Native repository](https://github.com/maplibre/maplibre-native) to report issues or ask for help.
 
