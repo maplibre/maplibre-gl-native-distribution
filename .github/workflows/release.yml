@@ -60,5 +60,5 @@ jobs:
         with:
           name: ${{ github.event.inputs.version }}
           tag_name: ${{ github.event.inputs.version }}
-          prerelease: ${{ contains(github.event.inputs.version, 'pre') }}
+          prerelease: ${{ contains(github.event.inputs.version, '-') }}
           body_path: changelog.md
